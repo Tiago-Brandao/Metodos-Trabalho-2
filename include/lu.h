@@ -4,8 +4,11 @@
 class LU : public Metodo
 {
 public:
-  double* l;
-  double* u;
+  // double* l;
+  // double* u;
+
+  double** L;
+  double** U;
 
   LU();
   LU(int tamanhoMatriz);

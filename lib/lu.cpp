@@ -10,21 +10,24 @@ LU::LU(int tamanhoMatriz):Metodo(tamanhoMatriz)
 
 void LU::inicializar()
 {
-  this->l = (double*) malloc(sizeof(double) * tamanhoMatriz * tamanhoMatriz);
-  this->u = (double*) malloc(sizeof(double) * tamanhoMatriz * tamanhoMatriz);
+  this->L = inicializarMatriz(tamanhoMatriz);
+  this->U = inicializarMatriz(tamanhoMatriz);
 
+  // ALIMENTANDO L e U
   for(int i = 0; i < tamanhoMatriz; i++)
   {
     for(int j = 0; j < tamanhoMatriz; j++)
     {
-      this->u[(tamanhoMatriz * i) + j] = this->matriz[(tamanhoMatriz * i) + j];
+      this->U[i][j] = this->M[i][j];
+
       if (i != j)
       {
-        this->l[(tamanhoMatriz * i) + j] = 0;
+        this->L[i][j] = 0;
       }
+
       else
       {
-        this->l[(tamanhoMatriz * i) + j] = 1;
+        this->L[i][j] = 1;
       }
     }
   }
@@ -34,26 +37,27 @@ void LU::inicializar()
 
 void LU::calcLU()
 {
-  double pivo;
-  double razao;
+  double PIVO;
+  double RAZAO;
   int k, coluna, linha;
   int n = tamanhoMatriz;
 
-  for(coluna = 0; coluna < n-1; coluna++)
+  for(coluna = 0; coluna < (n-1); coluna++)
   {
-    // primeiroPivô = u[(tamanhoMatriz * coluna) + coluna];
     for(linha = coluna+1; linha < n; linha++)
     {
-      razao = u[(tamanhoMatriz * linha) + coluna] / u[(tamanhoMatriz * coluna) + coluna];
+      RAZAO = U[linha][coluna] / U[coluna][coluna];
+
+      L[linha][coluna] = RAZAO;
+
       for(k = coluna; k < n; k++)
       {
-        pivo = u[(tamanhoMatriz * coluna) + k];
-        u[(tamanhoMatriz * linha) + k] -= razao*pivo;
+        // pivo = u[(tamanhoMatriz * coluna) + k];
+        PIVO = U[coluna][k];
 
-        if (linha > k)
-        {
-          l[(tamanhoMatriz * linha) + k] = razao;
-        }
+        // u[(tamanhoMatriz * linha) + k] -= razao*pivo;
+
+        U[linha][k] -= RAZAO * PIVO;
       }
     }
   }
@@ -66,7 +70,7 @@ double* LU::calcularMetodo(double* b)
   {
     for(int j = 0; j < tamanhoMatriz; j++)
     {
-      cout << l[(tamanhoMatriz * i) + j] << " ";
+      cout << L[i][j] << " ";
     }
     cout << "\n";
   }
@@ -76,7 +80,17 @@ double* LU::calcularMetodo(double* b)
   {
     for(int j = 0; j < tamanhoMatriz; j++)
     {
-      cout << u[(tamanhoMatriz * i) + j] << " ";
+      cout << U [i][j] << " ";
+    }
+    cout << "\n";
+  }
+
+  cout << "\nM\n";
+  for(int i = 0; i < tamanhoMatriz; i++)
+  {
+    for(int j = 0; j < tamanhoMatriz; j++)
+    {
+      cout << M[i][j] << " ";
     }
     cout << "\n";
   }
