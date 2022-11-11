@@ -8,12 +8,15 @@ class Metodo
 {
 public:
   int tamanhoMatriz;
-  // double* matriz;
   double** M;
+  bool pivoParcial;
+
   Metodo();
-  Metodo(int tamanhoMatriz);
+  Metodo(int tamanhoMatriz, bool pivoParcial);
 
   virtual double* calcularMetodo(double* b) = 0;
 };
 
 double** inicializarMatriz(int tamanhoMatriz);
+double** prodMM(double** A, double** B, int tamanhoMatriz);
+double* prodMV(double** M, double *V, int n);
