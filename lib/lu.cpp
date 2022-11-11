@@ -20,16 +20,15 @@ void LU::inicializar()
     for(int j = 0; j < tamanhoMatriz; j++)
     {
       this->U[i][j] = this->M[i][j];
+      this->L[i][j] = 0;
 
       if (i != j)
       {
-        this->L[i][j] = 0;
         this->P[i][j] = 0;
       }
 
       else
       {
-        this->L[i][j] = 1;
         this->P[i][j] = 1;
       }
     }
@@ -47,14 +46,16 @@ void LU::calcLU()
 
   for(coluna = 0; coluna < (n-1); coluna++)
   {
-    // CORRIGIR O L QUANDO FOR PIVO PARCIAL!
-    // AINDA NÃO SEI COMO FAZER!
+    // Validar o processo de mudar as linhas do L QUANDO FOR PIVO PARCIAL!
+    
+    /*
     if (pivoParcial)
     {
       double **Lmod = prodMM(P, L, n);
       free(L);
       L = Lmod;
     }
+    */
     
     for(linha = coluna+1; linha < n; linha++)
     {
@@ -69,6 +70,12 @@ void LU::calcLU()
         U[linha][k] -= RAZAO * PIVO;
       }
     }
+  }
+
+  // Corrigindo L
+  for (int i = 0; i < n; i++)
+  {
+    L[i][i] = 1;
   }
 }
 
@@ -150,11 +157,10 @@ double LU::calcRazao(int i, int j)
     if (linha2 > 0)
     {
       this->trocarLinhas(linha1, linha2);
-      /*
+      
       double razao = (U[i][j]/ U[j][j]);
       L[i][j] = razao;
       this->mudarL(linha1, linha2);
-      */
     }
   }
 

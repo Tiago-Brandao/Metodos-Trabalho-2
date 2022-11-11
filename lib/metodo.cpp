@@ -23,6 +23,7 @@ Metodo::Metodo(int tamanhoMatriz, bool pivoParcial)
   M[2][2] = 5;
   */
 
+  /*
   M[0][0] = 3;
   M[0][1] = -4;
   M[0][2] = 1;
@@ -32,6 +33,17 @@ Metodo::Metodo(int tamanhoMatriz, bool pivoParcial)
   M[2][0] = 4;
   M[2][1] = 0;
   M[2][2] = -3;
+  */
+
+  M[0][0] = 3;
+  M[0][1] = 2;
+  M[0][2] = 4;
+  M[1][0] = 1;
+  M[1][1] = 1;
+  M[1][2] = 2;
+  M[2][0] = 4;
+  M[2][1] = 3;
+  M[2][2] = -2;
 
 
   // AVION E VITOR RECEBER A MATRIZ
