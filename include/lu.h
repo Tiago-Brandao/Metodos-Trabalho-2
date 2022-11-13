@@ -1,5 +1,7 @@
 #pragma once
 #include "./metodo.h"
+using std::cout;
+using std::cin;
 
 class LU : public Metodo
 {
