@@ -1,21 +1,42 @@
 #include "include/lu.h"
+#include "include/pivot.h"
 
-int main()
-{
-  LU* teste = new LU(3, true);
+int main(){
+  
+  int tamanhoMatriz;
+  cout << "Digite o tamanho da matriz (linhas = colunas): ";
+  cin >> tamanhoMatriz;
 
-  double* d = (double *) malloc(sizeof(double) * 3);
-  /*
-  d[0] = 11;
-  d[1] = -15;
-  d[2] = 29;
-  */
 
-  d[0] = 9;
-  d[1] = 3;
-  d[2] = -2;
+  double** Matriz = (double**) malloc(sizeof(double*) * tamanhoMatriz);
+  for (int i = 0; i < tamanhoMatriz; i++) {
+    Matriz[i] = (double*) malloc(sizeof(double) * tamanhoMatriz);
+  }
 
-  teste->calcularMetodo(d);
+  for (int i = 0; i < tamanhoMatriz; i++){
+    for (int j = 0; j < tamanhoMatriz; j++){
+      cout << "\nDigite o valor para [" << i << "][" << j << "]";
+      cin >> Matriz[i][j];
+    }
+  }
+
+  for (int i = 0; i < tamanhoMatriz; i++){
+    for (int j = 0; j < tamanhoMatriz; j++){
+      cout <<  Matriz[i][j] << " ";
+    }
+    cout << "\n";
+  }
+
+  Pivot pivot(Matriz);
+
+  Matriz = pivot.pivotacaoParcial(Matriz, 0, tamanhoMatriz);
+
+  for (int i = 0; i < tamanhoMatriz; i++){
+    for (int j = 0; j < tamanhoMatriz; j++){
+      cout <<  Matriz[i][j] << " ";
+    }
+    cout << "\n";
+  }
 
   return 0;
 }
