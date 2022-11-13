@@ -15,7 +15,7 @@ int main(){
 
   for (int i = 0; i < tamanhoMatriz; i++){
     for (int j = 0; j < tamanhoMatriz; j++){
-      cout << "\nDigite o valor para [" << i << "][" << j << "]";
+      cout << "\nDigite o valor para [" << i << "][" << j << "]: ";
       cin >> Matriz[i][j];
     }
   }
@@ -26,7 +26,9 @@ int main(){
     }
     cout << "\n";
   }
+  
 
+/// TESTE DA FUNÇÃO PIVOT, SERA EXCLUIDO DO CODIGO, MAS POR ENQUANTO FICA DE BASE PROS CRIAS UTILIZAREM, TERMINA NA LINHA 41
   Pivot pivot(Matriz);
 
   Matriz = pivot.pivotacaoParcial(Matriz, 0, tamanhoMatriz);
@@ -37,6 +39,6 @@ int main(){
     }
     cout << "\n";
   }
-
+///
   return 0;
 }
