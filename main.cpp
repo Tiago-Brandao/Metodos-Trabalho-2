@@ -1,44 +1,76 @@
-#include "include/lu.h"
 #include "include/pivot.h"
+#include "include/lu.h"
+#include "include/ldp.h"
+using std::endl;
 
 int main(){
-  
   int tamanhoMatriz;
-  cout << "Digite o tamanho da matriz (linhas = colunas): ";
+  char pivotar;
+
+  cout << "Digite o tamanho da matriz: ";
   cin >> tamanhoMatriz;
 
+  cout << "Deseja usar pivotação parcial para resolver? (S/N): ";
+  cin >> pivotar;
 
-  double** Matriz = (double**) malloc(sizeof(double*) * tamanhoMatriz);
-  for (int i = 0; i < tamanhoMatriz; i++) {
-    Matriz[i] = (double*) malloc(sizeof(double) * tamanhoMatriz);
-  }
+  if (pivotar == 'N') pivotar = 0;
 
-  for (int i = 0; i < tamanhoMatriz; i++){
-    for (int j = 0; j < tamanhoMatriz; j++){
-      cout << "\nDigite o valor para [" << i << "][" << j << "]: ";
-      cin >> Matriz[i][j];
-    }
-  }
+  double** matriz = inicializarMatriz(tamanhoMatriz);
 
   for (int i = 0; i < tamanhoMatriz; i++){
     for (int j = 0; j < tamanhoMatriz; j++){
-      cout <<  Matriz[i][j] << " ";
+      printf("Digite o valor na posição [%d][%d] da matriz: ", i, j);
+      cin >> matriz[i][j];
     }
-    cout << "\n";
   }
-  
 
-/// TESTE DA FUNÇÃO PIVOT, SERA EXCLUIDO DO CODIGO, MAS POR ENQUANTO FICA DE BASE PROS CRIAS UTILIZAREM, TERMINA NA LINHA 41
-  Pivot pivot(Matriz);
+  LDP ldp = LDP(matriz, tamanhoMatriz, pivotar);
 
-  Matriz = pivot.pivotacaoParcial(Matriz, 0, tamanhoMatriz);
+  double* vetor = (double*) malloc(sizeof(double) * tamanhoMatriz);
 
   for (int i = 0; i < tamanhoMatriz; i++){
-    for (int j = 0; j < tamanhoMatriz; j++){
-      cout <<  Matriz[i][j] << " ";
-    }
-    cout << "\n";
+    printf("Digite o valor [%d] do vetor: ", i);
+    cin >> vetor[i];
   }
-///
+
+  ldp.calcularLDP();
+  ldp.substituicao(vetor);
+
+  // L
+  cout << "----- L -----\n"; 
+  for (int i = 0; i < tamanhoMatriz; i++){
+    for (int j = 0; j < tamanhoMatriz; j++){
+      cout << ldp.L[i][j] << " ";
+    }
+    cout << endl;
+  }
+
+  // D
+  cout << "----- D -----\n"; 
+  for (int i = 0; i < tamanhoMatriz; i++){
+    for (int j = 0; j < tamanhoMatriz; j++){
+      cout << ldp.D[i][j] << " ";
+    }
+    cout << endl;
+  }
+
+  // P
+  cout << "----- P -----\n"; 
+  for (int i = 0; i < tamanhoMatriz; i++){
+    for (int j = 0; j < tamanhoMatriz; j++){
+      cout << ldp.P[i][j] << " ";
+    }
+    cout << endl;
+  }
+
+  cout << "------------\n";
+
+  // X
+  cout << "X: { "; 
+  for (int i = 0; i < tamanhoMatriz; i++){
+    cout << ldp.vetorResolucao[i] << " ";
+  }
+  cout << "}\n";
+
   return 0;
 }
