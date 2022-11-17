@@ -1,7 +1,7 @@
 ALL: main
 
-main: ./build/main.o ./build/lu.o ./build/metodo.o ./build/pivot.o
-	g++ ./build/main.o ./build/lu.o ./build/metodo.o ./build/pivot.o -o main
+main: ./build/main.o ./build/lu.o ./build/ldp.o ./build/metodo.o ./build/pivot.o
+	g++ ./build/main.o ./build/lu.o ./build/ldp.o ./build/metodo.o ./build/pivot.o -o main
 
 ./build/main.o: main.cpp
 	g++ -c main.cpp -o ./build/main.o
@@ -14,3 +14,6 @@ main: ./build/main.o ./build/lu.o ./build/metodo.o ./build/pivot.o
 
 ./build/lu.o: ./lib/lu.cpp
 	g++ -c ./lib/lu.cpp -o ./build/lu.o
+
+./build/ldp.o: ./lib/ldp.cpp
+	g++ -c ./lib/ldp.cpp -o ./build/ldp.o
