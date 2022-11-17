@@ -12,9 +12,10 @@ public:
 
   LU();
   LU(int tamanhoMatriz, bool pivoParcial);
+  LU(double** matriz, int tamanhoMatriz, bool pivoParcial);
+
   void inicializar();
   void calcLU();
-
   double* calcularMetodo(double* b);
   double* calcY(double* b);
   double* calcX(double *y);
