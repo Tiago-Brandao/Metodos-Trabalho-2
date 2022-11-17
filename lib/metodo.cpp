@@ -7,34 +7,14 @@ Metodo::Metodo(int tamanhoMatriz, bool pivoParcial)
   this->tamanhoMatriz = tamanhoMatriz;
   this->M = inicializarMatriz(tamanhoMatriz);
   this->pivoParcial = pivoParcial;
-  
-  // TESTE DRIVE
-  this->tamanhoMatriz = 3;
+}
 
-  /*
-  M[0][0] = 1;
-  M[0][1] = -3;
-  M[0][2] = 2;
-  M[1][0] = -2;
-  M[1][1] = 8;
-  M[1][2] = -1;
-  M[2][0] = 4;
-  M[2][1] = -6;
-  M[2][2] = 5;
-  */
+Metodo::Metodo(double**matriz, int tamanhoMatriz, bool pivoParcial){
+  this->tamanhoMatriz = tamanhoMatriz;
+  this->M = inicializarMatriz(tamanhoMatriz);
+  this->pivoParcial = pivoParcial;
 
-  M[0][0] = 3;
-  M[0][1] = -4;
-  M[0][2] = 1;
-  M[1][0] = 1;
-  M[1][1] = 2;
-  M[1][2] = 2;
-  M[2][0] = 4;
-  M[2][1] = 0;
-  M[2][2] = -3;
-
-
-  // AVION E VITOR RECEBER A MATRIZ
+  this->M = matriz;
 }
 
 double** inicializarMatriz(int tamanhoMatriz)
@@ -83,4 +63,8 @@ double* prodMV(double** M, double *V, int n)
   }
 
   return prod;
+}
+
+void Metodo::setM(double** matriz){
+  this->M = matriz;
 }

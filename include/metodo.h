@@ -4,8 +4,7 @@
 #include <iostream>
 using std::cout;
 
-class Metodo
-{
+class Metodo {
 public:
   int tamanhoMatriz;
   double** M;
@@ -13,8 +12,12 @@ public:
 
   Metodo();
   Metodo(int tamanhoMatriz, bool pivoParcial);
+  Metodo(double** matriz, int tamanhoMatriz, bool pivoParcial);
 
   virtual double* calcularMetodo(double* b) = 0;
+
+  // Set
+  void setM(double** matriz);
 };
 
 double** inicializarMatriz(int tamanhoMatriz);
