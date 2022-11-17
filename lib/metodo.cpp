@@ -11,7 +11,6 @@ Metodo::Metodo(int tamanhoMatriz, bool pivoParcial)
 
 Metodo::Metodo(double**matriz, int tamanhoMatriz, bool pivoParcial){
   this->tamanhoMatriz = tamanhoMatriz;
-  this->M = inicializarMatriz(tamanhoMatriz);
   this->pivoParcial = pivoParcial;
 
   this->M = matriz;
