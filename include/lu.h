@@ -7,8 +7,6 @@ public:
   double** L;
   double** U;
   double** P;
-
-  // Tratar os casos de divisão por zero!
   bool valido;
 
   LU();

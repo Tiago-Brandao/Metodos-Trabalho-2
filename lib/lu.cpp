@@ -10,6 +10,7 @@ LU::LU(int tamanhoMatriz, bool pivoParcial):Metodo(tamanhoMatriz, pivoParcial)
 
 void LU::inicializar()
 {
+  this->valido = true;
   this->L = inicializarMatriz(tamanhoMatriz);
   this->U = inicializarMatriz(tamanhoMatriz);
   this->P = inicializarMatriz(tamanhoMatriz);
@@ -47,12 +48,22 @@ void LU::calcLU()
 
   for(coluna = 0; coluna < (n-1); coluna++)
   {
+    if (!valido)
+    {
+      break;
+    }
+
     pivo_Parcial_ja_foi_feito = false;
     for(linha = coluna+1; linha < n; linha++)
     {
       // Cálculo da razão e, em caso de pivotação parcial, mudança das linhas
       RAZAO = calcRazao(linha, coluna, pivo_Parcial_ja_foi_feito);
 
+      if (!valido)
+      {
+        break;
+      }
+      
       pivo_Parcial_ja_foi_feito = true;
 
       L[linha][coluna] = RAZAO;
@@ -66,10 +77,13 @@ void LU::calcLU()
     }
   }
 
-  // Corrigindo L
-  for (int i = 0; i < n; i++)
+  if (valido)
   {
-    L[i][i] = 1;
+    // Corrigindo L
+    for (int i = 0; i < n; i++)
+    {
+      L[i][i] = 1;
+    }
   }
 }
 
@@ -90,9 +104,6 @@ void LU::trocarLinhas(int linha1, int linha2)
 
   P[linha1] = Plinha2;
   P[linha2] = Plinha1;
-
-  // double razao = (U[i][j]/ U[j][j]);
-  // L[i][j] = razao;
 
   L[linha1] = Llinha2;
   L[linha2] = Llinha1;
@@ -121,39 +132,20 @@ double LU::calcRazao(int i, int j, bool pivo_Parcial_ja_foi_feito)
     }
   }
 
+  if (U[j][j] == 0)
+  {
+    valido = false;
+    return 0;
+  }
+
   return (U[i][j] / U[j][j]);
 }
 
 double* LU::calcularMetodo(double* b)
 {
-  cout << "\nM\n";
-  for(int i = 0; i < tamanhoMatriz; i++)
+  if (!valido)
   {
-    for(int j = 0; j < tamanhoMatriz; j++)
-    {
-      cout << M[i][j] << " ";
-    }
-    cout << "\n";
-  }
-
-  cout << "\nL\n";
-  for(int i = 0; i < tamanhoMatriz; i++)
-  {
-    for(int j = 0; j < tamanhoMatriz; j++)
-    {
-      cout << L[i][j] << " ";
-    }
-    cout << "\n";
-  }
-
-  cout << "\nU\n";
-  for(int i = 0; i < tamanhoMatriz; i++)
-  {
-    for(int j = 0; j < tamanhoMatriz; j++)
-    {
-      cout << U [i][j] << " ";
-    }
-    cout << "\n";
+    return nullptr;
   }
 
   return calcX(calcY(b));
@@ -182,12 +174,6 @@ double* LU::calcY(double* b)
     }
   }
 
-  cout << "\ny:\n";
-  for (int i = 0; i < n; i++)
-  {
-    cout << y[i] << "\n";
-  }
-
   return y;
 }
 
@@ -207,12 +193,6 @@ double* LU::calcX(double* y)
     }
 
     x[i] = x[i] / U[i][i];
-  }
-
-  cout << "\nx:\n";
-  for (int i = 0; i < n; i++)
-  {
-    cout << x[i] << "\n";
   }
 
   return x;
