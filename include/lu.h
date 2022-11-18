@@ -9,17 +9,21 @@ public:
   double** L;
   double** U;
   double** P;
+  bool valido;
 
   LU();
   LU(int tamanhoMatriz, bool pivoParcial);
+<<<<<<< HEAD
   LU(double** matriz, int tamanhoMatriz, bool pivoParcial);
+=======
+>>>>>>> BrandoRenan
 
   void inicializar();
   void calcLU();
   double* calcularMetodo(double* b);
   double* calcY(double* b);
   double* calcX(double *y);
-  double calcRazao(int i, int j);
+  double calcRazao(int i, int j, bool pivo_Parcial_ja_foi_feito);
+
   void trocarLinhas(int linha1, int linha2);
-  void mudarL(int linha1, int linha2);
 };

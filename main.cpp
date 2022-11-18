@@ -10,8 +10,20 @@ int main(){
   cout << "Digite o tamanho da matriz: ";
   cin >> tamanhoMatriz;
 
+<<<<<<< HEAD
   cout << "Deseja usar pivotação parcial para resolver? (S/N): ";
   cin >> pivotar;
+=======
+  /*
+  d[0] = 9;
+  d[1] = 3;
+  d[2] = -2;
+  */
+
+  d[0] = 1;
+  d[1] = 2;
+  d[2] = 3;
+>>>>>>> BrandoRenan
 
   if (pivotar == 'N') pivotar = 0;
 
