@@ -5,10 +5,6 @@ LDP::LDP(){
 
 }
 
-LDP::LDP(int tamanhoMatriz, bool pivoParcial):Metodo(tamanhoMatriz, pivoParcial){
-    this->inicializar();
-};
-
 LDP::LDP(double** matriz, int tamanhoMatriz, bool pivoParcial):Metodo(matriz, tamanhoMatriz, pivoParcial){
     this->inicializar();
 };

@@ -11,7 +11,6 @@ public:
   bool pivoParcial;
 
   Metodo();
-  Metodo(int tamanhoMatriz, bool pivoParcial);
   Metodo(double** matriz, int tamanhoMatriz, bool pivoParcial);
 
   virtual double* calcularMetodo(double* b) = 0;

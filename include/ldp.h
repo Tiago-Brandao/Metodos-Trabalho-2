@@ -12,7 +12,6 @@ class LDP : public Metodo {
         double* vetorResolucao;
 
         LDP();
-        LDP(int tamanhoMatriz, bool pivoParcial);
         LDP(double** matriz, int tamanhoMatriz, bool pivoParcial);
 
         // Alimentar as matrizes

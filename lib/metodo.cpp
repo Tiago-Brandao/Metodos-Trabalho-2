@@ -2,45 +2,10 @@
 
 Metodo::Metodo(){}
 
-Metodo::Metodo(int tamanhoMatriz, bool pivoParcial)
-{
-  this->tamanhoMatriz = tamanhoMatriz;
-  this->M = inicializarMatriz(tamanhoMatriz);
-  this->pivoParcial = pivoParcial;
-}
-
 Metodo::Metodo(double**matriz, int tamanhoMatriz, bool pivoParcial){
   this->tamanhoMatriz = tamanhoMatriz;
   this->pivoParcial = pivoParcial;
-
-<<<<<<< HEAD
   this->M = matriz;
-=======
-  /*
-  M[0][0] = 3;
-  M[0][1] = -4;
-  M[0][2] = 1;
-  M[1][0] = 1;
-  M[1][1] = 2;
-  M[1][2] = 2;
-  M[2][0] = 4;
-  M[2][1] = 0;
-  M[2][2] = -3;
-  */
-
-  M[0][0] = 3;
-  M[0][1] = 2;
-  M[0][2] = 4;
-  M[1][0] = 1;
-  M[1][1] = 1;
-  M[1][2] = 2;
-  M[2][0] = 4;
-  M[2][1] = 3;
-  M[2][2] = -2;
-
-
-  // AVION E VITOR RECEBER A MATRIZ
->>>>>>> BrandoRenan
 }
 
 double** inicializarMatriz(int tamanhoMatriz)

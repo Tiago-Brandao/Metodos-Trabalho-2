@@ -3,11 +3,6 @@
 LU::LU()
 {}
 
-LU::LU(int tamanhoMatriz, bool pivoParcial):Metodo(tamanhoMatriz, pivoParcial)
-{
-  this->inicializar();
-};
-
 LU::LU(double** matriz, int tamanhoMatriz, bool pivoParcial):Metodo(matriz, tamanhoMatriz, pivoParcial)
 {
   this->inicializar();

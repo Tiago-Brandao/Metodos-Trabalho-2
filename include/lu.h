@@ -12,11 +12,7 @@ public:
   bool valido;
 
   LU();
-  LU(int tamanhoMatriz, bool pivoParcial);
-<<<<<<< HEAD
   LU(double** matriz, int tamanhoMatriz, bool pivoParcial);
-=======
->>>>>>> BrandoRenan
 
   void inicializar();
   void calcLU();
