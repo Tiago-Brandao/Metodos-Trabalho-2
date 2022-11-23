@@ -1,13 +1,15 @@
 #include "include/pivot.h"
 #include "include/lu.h"
 #include "include/ldp.h"
+#include "include/view.h"
 using std::endl;
 
 int main(){
+
   int tamanhoMatriz;
   char pivotar;
 
-  cout << "Digite o tamanho da matriz: ";
+  /* cout << "Digite o tamanho da matriz: ";
   cin >> tamanhoMatriz;
 
   cout << "Deseja usar pivotação parcial para resolver? (S/N): ";
@@ -37,7 +39,7 @@ int main(){
   ldp.substituicao(vetor);
 
   // L
-  cout << "----- L -----\n"; 
+  cout << "----- L -----\n";
   for (int i = 0; i < tamanhoMatriz; i++){
     for (int j = 0; j < tamanhoMatriz; j++){
       cout << ldp.L[i][j] << " ";
@@ -46,7 +48,7 @@ int main(){
   }
 
   // D
-  cout << "----- D -----\n"; 
+  cout << "----- D -----\n";
   for (int i = 0; i < tamanhoMatriz; i++){
     for (int j = 0; j < tamanhoMatriz; j++){
       cout << ldp.D[i][j] << " ";
@@ -55,7 +57,7 @@ int main(){
   }
 
   // P
-  cout << "----- P -----\n"; 
+  cout << "----- P -----\n";
   for (int i = 0; i < tamanhoMatriz; i++){
     for (int j = 0; j < tamanhoMatriz; j++){
       cout << ldp.P[i][j] << " ";
@@ -66,11 +68,17 @@ int main(){
   cout << "------------\n";
 
   // X
-  cout << "X: { "; 
+  cout << "X: { ";
   for (int i = 0; i < tamanhoMatriz; i++){
     cout << ldp.vetorResolucao[i] << " ";
   }
-  cout << "}\n";
+  cout << "}\n"; */
+
+  double xx[2] = {2.5, 0.0};
+  double xx2[2] = {1.0, 0.0};
+
+  View *viewOfMenu = new View();
+  viewOfMenu->printResultsOfMethods(xx, xx2,  2);
 
   return 0;
 }
