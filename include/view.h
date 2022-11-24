@@ -14,5 +14,5 @@ class View {
     public:
         void menu();
         void printResultsOfMethods(double *LDPresolution, double *LUresolution, int numberOfX);
-        void paintColumn(int rowIndex, int columnIndex, int redOrGreen, int numLin);
+        void paintColumn(int columnIndex, int redOrGreen, int numLin);
 };
