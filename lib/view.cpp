@@ -120,6 +120,7 @@ void View::menu() {
   char pivotar;
   double** matriz;
   double* respostaLU;
+  int entradaDeNumeros;
 
 
   this->print_message("BEM VINDO AO SISTEMA DE RESOLUÇÃO");
@@ -127,11 +128,14 @@ void View::menu() {
   cout << "VAMOS COMEÇAR OS CÁLCULOS....\n";
 
   while (continar) {
+
     cout << "Digite o tamanho da matriz: ";
     cin >> tamanhoMatriz;
 
-    if (tamanhoMatriz <= 0 ) {
+    if ( tamanhoMatriz <= 0 ) {
       cout << "Entrada inválida.\n";
+      cin.clear();
+      cin.ignore(INT_MAX, '\n');
       continue;
     }
 
@@ -140,6 +144,8 @@ void View::menu() {
 
     if (tolower(pivotar) != 's' && tolower(pivotar) != 'n') {
       cout << "Entrada inválida.\n";
+      cin.clear();
+      cin.ignore(INT_MAX, '\n');
       continue;
     }
 
@@ -149,22 +155,49 @@ void View::menu() {
 
     matriz = inicializarMatriz(tamanhoMatriz);
 
-    for (int i = 0; i < tamanhoMatriz; i++){
-      for (int j = 0; j < tamanhoMatriz; j++){
+
+    int i = 0;
+    int j = 0;
+    while (i < tamanhoMatriz) {
+      j = 0;
+      while (j < tamanhoMatriz) {
         printf("Digite o valor na posição [%d][%d] da matriz: ", i, j);
-        cin >> matriz[i][j];
+        cin >> entradaDeNumeros;
+        if (cin.fail()) {
+          cout << "entrada inválida.\n";
+          cin.clear();
+          cin.ignore(INT_MAX, '\n');
+
+        }else {
+          matriz[i][j] = entradaDeNumeros;
+          j += 1;
+        }
+
       }
+      i += 1;
     }
-
-
-
 
     vetor = (double*) malloc(sizeof(double) * tamanhoMatriz);
 
-    for (int i = 0; i < tamanhoMatriz; i++){
+    i = 0;
+    while (i < tamanhoMatriz) {
+      printf("Digite o valor [%d] do vetor: ", i);
+      cin >> entradaDeNumeros;
+      if (cin.fail()) {
+        cout << "entrada inválida.\n";
+        cin.clear();
+        cin.ignore(INT_MAX, '\n');
+
+      }else {
+        vetor[i] = entradaDeNumeros;
+        i += 1;
+      }
+    }
+
+    /* for (int i = 0; i < tamanhoMatriz; i++){
       printf("Digite o valor [%d] do vetor: ", i);
       cin >> vetor[i];
-    }
+    } */
 
 
     /* pedindo para o usuário checar se a matriz e o vetor estão como ele deseja */
@@ -200,6 +233,9 @@ void View::menu() {
 
     if (tolower(resposta) == 'x') {
       continar = false;
+    }else {
+      cin.clear();
+      cin.ignore(INT_MAX, '\n');
     }
   }
 }
