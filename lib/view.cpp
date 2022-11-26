@@ -13,6 +13,31 @@ void View::paintColumn(int columnIndex, int redOrGreen, int numLin) {
 };
 
 
+void View::print_input_matrice(double **matrice, int numberLinesAndColumns) {
+  string row = " ";
+  for (int i = 0; i < numberLinesAndColumns; i++) {
+    for (int j = 0; j < numberLinesAndColumns; j++) {
+      row += "    " + to_string(matrice[i][j]);
+    };
+    this->table_of_input.add_row({row});
+    row = " ";
+  }
+
+  this->table_of_input.format()
+  .corner("|")
+  .hide_border_bottom()
+  .hide_border_top()
+  .padding_top(1)
+  .padding_bottom(1)
+  .padding_left(1.2)
+  .padding_right(1.2);
+
+  cout << this->table_of_input << endl;
+};
+
+
+
+
 void View::printResultsOfMethods(double *LDPresolution, double *LUresolution, int numberOfX){
   bool willTheRocketFallbyLDP = false;
   bool willTheRocketFallbyLU = false;
@@ -86,5 +111,127 @@ table_of_results.format()
 };
 
 void View::menu() {
+  LDP ldp;
+  LU lu;
+  char resposta = ' ';
+  bool continar = true;
+  double* vetor;
+  int tamanhoMatriz;
+  char pivotar;
+  double** matriz;
+  double* respostaLU;
 
+
+  this->print_message("BEM VINDO AO SISTEMA DE RESOLUÇÃO");
+
+  cout << "VAMOS COMEÇAR OS CÁLCULOS....\n";
+
+  while (continar) {
+    cout << "Digite o tamanho da matriz: ";
+    cin >> tamanhoMatriz;
+
+    if (tamanhoMatriz <= 0 ) {
+      cout << "Entrada inválida.\n";
+      continue;
+    }
+
+    cout << "Deseja usar pivotação parcial para resolver? (S/N): ";
+    cin >> pivotar;
+
+    if (tolower(pivotar) != 's' && tolower(pivotar) != 'n') {
+      cout << "Entrada inválida.\n";
+      continue;
+    }
+
+    if (pivotar == 'N') pivotar = 0;
+
+    /* Pedindo a entrada da matriz */
+
+    matriz = inicializarMatriz(tamanhoMatriz);
+
+    for (int i = 0; i < tamanhoMatriz; i++){
+      for (int j = 0; j < tamanhoMatriz; j++){
+        printf("Digite o valor na posição [%d][%d] da matriz: ", i, j);
+        cin >> matriz[i][j];
+      }
+    }
+
+
+
+
+    vetor = (double*) malloc(sizeof(double) * tamanhoMatriz);
+
+    for (int i = 0; i < tamanhoMatriz; i++){
+      printf("Digite o valor [%d] do vetor: ", i);
+      cin >> vetor[i];
+    }
+
+
+    /* pedindo para o usuário checar se a matriz e o vetor estão como ele deseja */
+    this->print_input_matrice(matriz, tamanhoMatriz);
+    cout << "CONFIRA A SUA MATRIZ: \n";
+    cout << "==========================\n";
+    this->print_input_vector(vetor, tamanhoMatriz);
+    cout << "CONFIRA O VETOR TAMBÉM: \n";
+    cout << "==========================\n";
+    cout << "PARA CONTINUAR DIGITE 'X', PARA REPETIR O PROCESSO DIGITE QUALUQUER OUTRA COISA: ";
+    cin >> resposta;
+
+    if ( tolower(resposta) != 'x' ) {
+      return;
+    }
+
+    ldp = LDP(matriz, tamanhoMatriz, pivotar);
+    lu = LU(matriz, tamanhoMatriz, pivotar);
+    ldp.calcularLDP();
+    ldp.substituicao(vetor);
+    lu.calcLU();
+    respostaLU = lu.calcularMetodo(vetor);
+
+    if ( !(lu.valido) ) {
+      this->print_message("NÃO É POSSÍVEL RESOLVER O SISTEMA");
+    }else {
+      this->printResultsOfMethods(ldp.vetorResolucao, respostaLU,  tamanhoMatriz);
+    }
+
+    cout << "PARA ENCERRAR O PROGAMA DIGITE 'X'.\n";
+    cout << "PARA EXECUTAR NOVAMENTE DIGITE QUALQUER OUTRA COISA.\n";
+    cin >> resposta;
+
+    if (tolower(resposta) == 'x') {
+      continar = false;
+    }
+  }
 }
+
+
+void View::print_input_vector(double *vector, int numberLinesAndColumns) {
+  for (int i = 0; i < numberLinesAndColumns; i++) {
+    this->vector_b.add_row({to_string(vector[i])});
+  }
+  this->vector_b.format()
+  .corner("|")
+  .hide_border_bottom()
+  .hide_border_top()
+  .padding_top(1)
+  .padding_bottom(1)
+  .padding_left(1.2)
+  .padding_right(1.2);
+
+  cout << this->vector_b << endl;
+};
+
+
+void View::print_message(string messageToPrint) {
+  this->table_of_menu.add_row({messageToPrint});
+
+  this->table_of_menu.format()
+  .font_color(Color::white)
+  .font_background_color(Color::red)
+  .font_align(FontAlign::center)
+  .padding(1)
+  .hide_border()
+  .corner(" ");
+
+  cout << this->table_of_menu << endl;
+};

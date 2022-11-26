@@ -5,11 +5,14 @@
 using std::endl;
 
 int main(){
-
+  /* View *viewOfMenu = new View();
+  LDP ldp;
+  char resposta = ' ';
+  double* vetor;
   int tamanhoMatriz;
   char pivotar;
 
-  /* cout << "Digite o tamanho da matriz: ";
+  cout << "Digite o tamanho da matriz: ";
   cin >> tamanhoMatriz;
 
   cout << "Deseja usar pivotação parcial para resolver? (S/N): ";
@@ -19,20 +22,29 @@ int main(){
 
   double** matriz = inicializarMatriz(tamanhoMatriz);
 
-  for (int i = 0; i < tamanhoMatriz; i++){
-    for (int j = 0; j < tamanhoMatriz; j++){
-      printf("Digite o valor na posição [%d][%d] da matriz: ", i, j);
-      cin >> matriz[i][j];
+  while (tolower(resposta) != 'x') {
+    for (int i = 0; i < tamanhoMatriz; i++){
+      for (int j = 0; j < tamanhoMatriz; j++){
+        printf("Digite o valor na posição [%d][%d] da matriz: ", i, j);
+        cin >> matriz[i][j];
+      }
     }
-  }
 
-  LDP ldp = LDP(matriz, tamanhoMatriz, pivotar);
 
-  double* vetor = (double*) malloc(sizeof(double) * tamanhoMatriz);
+    ldp = LDP(matriz, tamanhoMatriz, pivotar);
 
-  for (int i = 0; i < tamanhoMatriz; i++){
-    printf("Digite o valor [%d] do vetor: ", i);
-    cin >> vetor[i];
+    vetor = (double*) malloc(sizeof(double) * tamanhoMatriz);
+
+    for (int i = 0; i < tamanhoMatriz; i++){
+      printf("Digite o valor [%d] do vetor: ", i);
+      cin >> vetor[i];
+    }
+
+
+    viewOfMenu->print_input_matrice(matriz, tamanhoMatriz);
+    cout << "Confira a sua matriz: \n";
+    cout << "Para parar digite x, para repetir o processo digite qualquer outra coisa.";
+    cin >> resposta;
   }
 
   ldp.calcularLDP();
@@ -72,13 +84,16 @@ int main(){
   for (int i = 0; i < tamanhoMatriz; i++){
     cout << ldp.vetorResolucao[i] << " ";
   }
-  cout << "}\n"; */
+  cout << "}\n";
 
   double xx[2] = {2.5, 0.0};
-  double xx2[2] = {1.0, 0.0};
+  double xx2[3] = {1.0, 0.0, 1.0};
 
-  View *viewOfMenu = new View();
-  viewOfMenu->printResultsOfMethods(xx, xx2,  2);
+
+  viewOfMenu->printResultsOfMethods(ldp.vetorResolucao, xx2,  tamanhoMatriz);*/
+
+  View *interface = new View();
+  interface->menu();
 
   return 0;
 }
