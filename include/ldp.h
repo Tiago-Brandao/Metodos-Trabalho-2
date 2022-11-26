@@ -10,6 +10,7 @@ class LDP : public Metodo {
         double** P;
         double** Permutation;
         double* vetorResolucao;
+        bool valido;
 
         LDP();
         LDP(double** matriz, int tamanhoMatriz, bool pivoParcial);
@@ -25,4 +26,6 @@ class LDP : public Metodo {
 
         // Realizar as substituições passando um vetor de valores
         void substituicao(double* v);
+
+        void freeLDP();
 };

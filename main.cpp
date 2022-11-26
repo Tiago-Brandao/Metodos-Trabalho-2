@@ -63,14 +63,31 @@ int main(){
     cout << endl;
   }
 
+  // Permutation
+  cout << "----- Permutation -----\n"; 
+  for (int i = 0; i < tamanhoMatriz; i++){
+    for (int j = 0; j < tamanhoMatriz; j++){
+      cout << ldp.Permutation[i][j] << " ";
+    }
+    cout << endl;
+  }
+
   cout << "------------\n";
 
   // X
+  if (ldp.valido == false) cout << "da nao fi\n";
   cout << "X: { "; 
   for (int i = 0; i < tamanhoMatriz; i++){
-    cout << ldp.vetorResolucao[i] << " ";
+    printf("%.2f ", ldp.vetorResolucao[i]);
   }
   cout << "}\n";
+
+  for (int i = 0; i < tamanhoMatriz; i++){
+    free(matriz[i]);
+  }
+  free(vetor);
+  free(matriz);
+  ldp.freeLDP();
 
   return 0;
 }
