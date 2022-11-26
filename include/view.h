@@ -2,6 +2,7 @@
 #include "ldp.h"
 #include "lu.h"
 #include <array>
+#include <climits>
 #include <tabulate/table.hpp>
 using namespace tabulate;
 using Row_t = Table::Row_t;
@@ -23,3 +24,4 @@ class View {
         void printResultsOfMethods(double *LDPresolution, double *LUresolution, int numberOfX);
         void paintColumn(int columnIndex, int redOrGreen, int numLin);
 };
+

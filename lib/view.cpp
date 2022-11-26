@@ -218,7 +218,6 @@ void View::menu() {
     lu = LU(matriz, tamanhoMatriz, pivotar);
     ldp.calcularLDP();
     ldp.substituicao(vetor);
-    lu.calcLU();
     respostaLU = lu.calcularMetodo(vetor);
 
     if ( !(lu.valido) ) {

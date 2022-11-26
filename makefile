@@ -1,7 +1,7 @@
 ALL: main
 
 main: ./build/main.o ./build/lu.o ./build/ldp.o ./build/metodo.o ./build/pivot.o ./build/view.o
-	g++ ./build/main.o ./build/lu.o ./build/ldp.o ./build/metodo.o ./build/pivot.o ./build/view.o -o main
+	g++ ./build/main.o ./build/lu.o ./build/ldp.o ./build/metodo.o ./build/view.o ./build/pivot.o -o main
 
 ./build/main.o: main.cpp
 	g++ -c main.cpp -o ./build/main.o
