@@ -59,11 +59,11 @@ void LDP::calcularLDP(){
                 free(aux[m]);
             }
             free(aux);
-            
+
             aux = this->L;
 
             this->L = prodMM(pivotar.permutation, L, tamanhoMatriz);
-            
+
             for (int m = 0; m < tamanhoMatriz; m++){
                 free(aux[m]);
             }
@@ -86,7 +86,7 @@ void LDP::calcularLDP(){
 
         for (int linha = coluna + 1; linha < n; linha++){
             razao = this->P[linha][coluna] / pivo;
-            
+
             this->L[linha][coluna] = razao;
             this->P[coluna][coluna] = 0;
             this->P[linha][coluna] = 0;
@@ -96,7 +96,7 @@ void LDP::calcularLDP(){
             }
         }
     }
-    
+
     aux = pivotar.permutation;
     for (int m = 0; m < tamanhoMatriz; m++){
         free(aux[m]);
@@ -116,11 +116,11 @@ void LDP::calcularLDP(){
         this->L[i][i] = 1;
         this->P[i][i] = 1;
     }
-}   
+}
 
 void LDP::substituicao(double* v){
     int n = tamanhoMatriz;
-    
+
     this->vetorResolucao = v;
 
     if (pivoParcial){
@@ -166,6 +166,6 @@ void LDP::freeLDP(){
     free(this->Permutation);
 
     if (this->pivoParcial){
-        free(this->vetorResolucao); 
+        free(this->vetorResolucao);
     }
 }

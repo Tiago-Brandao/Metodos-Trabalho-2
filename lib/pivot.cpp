@@ -9,7 +9,7 @@ Pivot::Pivot(double** matriz, int tamanhoMatriz){
     for (int i = 0; i < tamanhoMatriz; i++)
     {
         permutation[i] = (double*) malloc(sizeof(double) * tamanhoMatriz);
-        
+
         for (int j = 0; j < tamanhoMatriz; j++){
             permutation[i][j] = 0;
         }

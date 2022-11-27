@@ -63,7 +63,7 @@ void LU::calcLU()
       {
         break;
       }
-      
+
       pivo_Parcial_ja_foi_feito = true;
 
       L[linha][coluna] = RAZAO;

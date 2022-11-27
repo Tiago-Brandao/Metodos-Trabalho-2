@@ -1,5 +1,5 @@
 #pragma once
-#include <stdio.h> 
+#include <stdio.h>
 #include <stdlib.h>
 
 class Pivot {
@@ -15,4 +15,3 @@ public:
 
     void trocarLinhas(int linha1, int linha2);
 };
-
