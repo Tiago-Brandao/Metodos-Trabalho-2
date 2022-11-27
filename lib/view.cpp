@@ -258,6 +258,7 @@ void View::menu() {
     if ( !(lu.valido) ) {
       this->print_message("NÃO É POSSÍVEL RESOLVER O SISTEMA");
     }else {
+
       this->printResultsOfMethods(respostaLDP, respostaLU,  tamanhoMatriz);
     }
 
