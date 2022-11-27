@@ -203,6 +203,7 @@ void View::menu() {
 
     if (pedirApenasVetorB || pedirMatrizEvetorB) {
       vetor = (double*) malloc(sizeof(double) * tamanhoMatriz);
+      vetorLDP = (double*) malloc(sizeof(double) * tamanhoMatriz);
 
       i = 0;
       while (i < tamanhoMatriz) {
